@@ -30,9 +30,12 @@ daywise_data = read_data(path, files[2])
 group_data = read_data(path, files[3])
 full_group_data = read_data(path, files[4])
 usa_data = read_data(path, files[5])
-print(world_data.columns)
+print(daywise_data.columns)
 
 columns = ['TotalCases', 'TotalDeaths', 'TotalRecovered', 'ActiveCases']
 for i in columns:
     fig = px.treemap(world_data.iloc[0:20], values=i, path=['Country/Region'], title='Treemap representation of different countries w.r.t to their {}'.format(i))
     fig.show()
+
+fig2 = px.line(daywise_data, x='Date', y=['Confirmed', 'Deaths', 'Recovered', 'Active'], title='Covid cases w.r.t to date')
+fig2.show()
